@@ -17,7 +17,7 @@ var data = {
 		cheese: 7,
 		lettuce: 6
 	},
-	sause{
+	sause:{
 		cetchup: 5,
 		mayonnaise: 5,
 		mustard: 5,
