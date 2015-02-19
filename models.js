@@ -7,21 +7,22 @@ function Sandwich (obj) {
 Sandwich.prototype.getPrice = function () {
 	var price = 0;
 
-	Object.keys(this).forEach(dataKeys.bind(this));
 
-	function dataKeys(el){
+	Object.keys(this).forEach(elementPrice(), this);
+
+	function elementPrice(elt) {
+		
+		return function dataKeys(el){
 			if(Array.isArray(this[el])){
 				this[el].forEach(elementPrice(el));
 			}else{
-				price += data[el][this[el]];
+				var field = elt || el;
+				var value = this[el] || el;
+				price += data[field][value];
 			}
-	}
-
-	function elementPrice (el) {
-		return function (elt) {
-			price += data[el][elt];
 		}
 	}
+
 	return price;
 }
 
