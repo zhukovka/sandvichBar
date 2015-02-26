@@ -3,10 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Sandwich Bar JS</title>
-	<script src="data.js"></script>
-	<script src="models.js"></script>
 </head>
 <body>
-	
+	<div id="order">
+		
+	</div>
+	<script type="template" id="content">
+	<ul>
+	{{#letters}}
+		<li>{{.}}</li>
+	{{/letters}}
+	</ul>
+
+	</script>
+
+	<script src="mustache.js"></script>
+	<script src="data.js"></script>
+	<script src="models.js"></script>
+	<script src="view.js"></script>
 </body>
 </html>
+<script type="text/javascript">
+	console.log('ololo');
+</script>

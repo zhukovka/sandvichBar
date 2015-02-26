@@ -75,4 +75,6 @@ function dataToObject(rawData, data) {
 	return mapping.getObject();
 }
 
-console.log(dataToObject(recipes.chickensandwich, data));
+console.log(dataToObject( ['chicken', ["white,white,,  "],'ololo',
+    {fillings: ['onion, gherkins, lettuce, 100']}, 
+    ['thousandIslands']], data));
