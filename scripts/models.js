@@ -91,30 +91,3 @@ function normalizeData(obj,data){
 }
 
 console.log(normalizeData(arr,data))
-
-
-//console.log(s1.getPrice());
-
-//function Sandwich (obj) {
-//    for(var key in obj){
-//        this[key] = obj[key];
-//    }
-//}
-//
-//
-//Sandwich.prototype.getPrice = function () {
-//    var obj = this;
-//    var price = 0;
-//    function getFillings(previous,current){
-//        console.log(obj[previous]);
-//        price += Array.isArray(obj[previous]) ? 1 : data[previous][obj[previous]];
-//        return price;
-//    }
-//
-//    return Object.keys(data).reduce(getFillings);
-//}
-//
-//
-//var s1 = new Sandwich({bread: 'white', meat:'ham'})// fillings: ['onion', 'tomato']});
-//
-//console.log(s1.getPrice());
