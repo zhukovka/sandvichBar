@@ -7,6 +7,11 @@ var ViewProto = {
       if(this.el && document){
         this.el = document.getElementById(this.el);
       }
+
+      this.model.toString = function () {
+
+        return JSON.stringify(this);
+      }
     },
     // template: Mustache.render(stirng, this.model),
     render: function (html) {
@@ -15,7 +20,7 @@ var ViewProto = {
 }
 
 var dataView = Object.create(ViewProto);
-var model = { letters: ['a','b','c']};
+var model = data;
 dataView.init({
 	el:'order',
 	model: model,
