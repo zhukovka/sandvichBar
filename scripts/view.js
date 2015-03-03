@@ -16,8 +16,10 @@ $(function() {
         render: function () {
             var templating = Handlebars.compile($(this.template).html());
             var elt = document.createElement('div');
+            // elt.id = this.id;
             elt.innerHTML = templating(this.model);
             this.el.appendChild(elt);
+            return elt;
         }
     }
 
@@ -38,6 +40,7 @@ $(function() {
     dataView.render();
 
     var form = document.getElementById('sandwichForm');
+    var sandwichDivs;
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -53,9 +56,12 @@ $(function() {
             model: orderedSandwich,
             template: '#sandwichTemplate'
         });
-        sandichView.render();
+        sandichView.render().addEventListener('click', function (e) {
+            this.classList.add('selected');
+        });
     });
 
+    
     form.addEventListener('submit', addDelete);
 
     function addDelete(e) {
@@ -65,6 +71,13 @@ $(function() {
         document.getElementById('sandwichBar').appendChild(deleteBtn);
         form.removeEventListener('submit', addDelete);
     }
+
+    // Array.prototype.forEach.call(sandwichDivs, function (el) {
+    //     el.addEventListener('click', function (e) {
+    //         this.classList.add('selected');
+    //     });
+    // })
+
 });
 
 
