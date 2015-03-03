@@ -13,9 +13,9 @@ $(function() {
                 this.el = document.getElementById(this.el);
             }
         },
-        // template: Mustache.render(stirng, this.model),
-        render: function (template,data) {
-            this.el.innerHTML = template(data);
+        render: function () {
+            var templating = Handlebars.compile($(this.template).html());
+            this.el.innerHTML = templating(this.model);
         }
     }
 
@@ -29,11 +29,11 @@ $(function() {
 
     dataView.init({
         el:'order',
-        model: model
+        model: model,
+        template: '#template'
     });
 
-    var template = Handlebars.compile($('#template').html());
-    dataView.render(template, model);
+    dataView.render();
 
     var form = document.getElementById('sandwichForm');
 
@@ -46,15 +46,13 @@ $(function() {
             sandwich[input.name] = input.value;
         });
         var orderedSandwich = new Sandwich(sandwich);
-        console.log(orderedSandwich);
         var sandichView = Object.create(ViewProto);
         sandichView.init({
             el: 'sandwich',
-            model: orderedSandwich
+            model: orderedSandwich,
+            template: '#sandwichTemplate'
         });
-
-        var template = Handlebars.compile($('#sandwichTemplate').html());
-        sandichView.render(template, sandichView.model);
+        sandichView.render();
     });
 });
 
