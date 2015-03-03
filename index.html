@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="scripts/handlebars-v3.0.0.js"></script>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/view.js"></script>
+
+    <meta charset="UTF-8">
 	<title>Sandwich Bar JS</title>
 </head>
 <body>
-	<div id="order">
-		
-	</div>
-	<script type="template" id="content">
-	<ul>
-	{{#bread}}
-		<li>white: {{white}}</li>
-		<li>dark: {{dark}}</li>
-	{{/bread}}
-	</ul>
+<div id="order">
 
-	</script>
+</div>
+<script id="template" type="text/x-handlebars-template">
+
+            <ul>
+                {{#each this}}
+                    <p><b>{{@key}}</b></p>
+                        {{#each this}}
+                             <li>{{@key}} {{@this}}</li>
+                        {{/each}}
+                {{/each}}
+            </ul>
+
+</script>
+
 
 	<script src="mustache.js"></script>
 	<script src="data.js"></script>
@@ -24,6 +33,4 @@
 	<script src="view.js"></script>
 </body>
 </html>
-<script type="text/javascript">
-	console.log('ololo');
-</script>
+

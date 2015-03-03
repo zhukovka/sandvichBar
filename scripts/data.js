@@ -23,6 +23,12 @@ var data = {
 		mustard: 5,
 		thousandIslands: 15
 	}
+<<<<<<< HEAD:scripts/data.js
+}
+
+||||||| merged common ancestors
+}
+=======
 }
 
 var recipes = {
@@ -78,3 +84,4 @@ function dataToObject(rawData, data) {
 console.log(dataToObject( ['chicken', ["white,white,,  "],'ololo',
     {fillings: ['onion, gherkins, lettuce, 100']}, 
     ['thousandIslands']], data));
+>>>>>>> master:data.js
