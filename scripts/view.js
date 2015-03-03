@@ -15,7 +15,9 @@ $(function() {
         },
         render: function () {
             var templating = Handlebars.compile($(this.template).html());
-            this.el.innerHTML = templating(this.model);
+            var elt = document.createElement('div');
+            elt.innerHTML = templating(this.model);
+            this.el.appendChild(elt);
         }
     }
 
@@ -40,7 +42,6 @@ $(function() {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         var selected = this.querySelectorAll('input[type="checkbox"]:checked');
-        // console.log(selected);
         var sandwich = {};
         Array.prototype.forEach.call(selected, function (input) {
             sandwich[input.name] = input.value;
