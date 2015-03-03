@@ -55,6 +55,16 @@ $(function() {
         });
         sandichView.render();
     });
+
+    form.addEventListener('submit', addDelete);
+
+    function addDelete(e) {
+        e.preventDefault();
+        var deleteBtn = document.createElement('button');
+        deleteBtn.innerHTML = 'Delete selected';
+        document.getElementById('sandwichBar').appendChild(deleteBtn);
+        form.removeEventListener('submit', addDelete);
+    }
 });
 
 
