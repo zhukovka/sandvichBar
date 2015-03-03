@@ -47,6 +47,14 @@ $(function() {
         });
         var orderedSandwich = new Sandwich(sandwich);
         console.log(orderedSandwich);
+        var sandichView = Object.create(ViewProto);
+        sandichView.init({
+            el: 'sandwich',
+            model: orderedSandwich
+        });
+
+        var template = Handlebars.compile($('#sandwichTemplate').html());
+        sandichView.render(template, sandichView.model);
     });
 });
 
