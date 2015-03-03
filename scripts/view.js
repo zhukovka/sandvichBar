@@ -23,18 +23,31 @@ $(function() {
 
 
 
-var dataView = Object.create(ViewProto);
+    var dataView = Object.create(ViewProto);
 
-var model = data;
+    var model = data;
 
-dataView.init({
-    el:'order',
-    model: model
-});
+    dataView.init({
+        el:'order',
+        model: model
+    });
 
     var template = Handlebars.compile($('#template').html());
     dataView.render(template, model);
 
+    var form = document.getElementById('sandwichForm');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var selected = this.querySelectorAll('input[type="checkbox"]:checked');
+        // console.log(selected);
+        var sandwich = {};
+        Array.prototype.forEach.call(selected, function (input) {
+            sandwich[input.name] = input.value;
+        });
+        var orderedSandwich = new Sandwich(sandwich);
+        console.log(orderedSandwich);
+    });
 });
 
 

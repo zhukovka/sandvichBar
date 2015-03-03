@@ -4,32 +4,60 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="scripts/handlebars-v3.0.0.js"></script>
     <script src="scripts/data.js"></script>
+    <script src="models.js"></script>
     <script src="scripts/view.js"></script>
 
     <meta charset="UTF-8">
 	<title>Sandwich Bar JS</title>
+	<style type="text/css">
+		.container{
+			overflow: hidden;
+		}
+		.container>div{
+			float: left;
+			width: 50%;
+			box-sizing: border-box;
+		}
+		.container>div:first-child{
+			border-right: 1px solid; 
+		}
+	</style>
 </head>
 <body>
-<div id="order">
-
+<div class="container">
+	<div id="order">
+	
+	</div>
+	<div id="sandwich">
+		
+	</div>
 </div>
 <script id="template" type="text/x-handlebars-template">
 
 	<form id="sandwichForm">
     {{#each this}}
       <h3>{{@key}}</h3>
-      {{#each this}}
 				<p>                
+      {{#each this}}
 					<input type="checkbox" name="{{@../key}}" value="{{@key}}">
 					<label for="{{@key}}">{{@key}}:{{@this}}грн.</label>
-				</p>
       {{/each}}
+				</p>
     {{/each}}
     <input type="submit" value="Order">
 	</form>
 
 </script>
-	
+
+<script id="sandwichTemplate" type="text/x-handlebars-template">
+	{{#each this}}
+		<div>
+			{{@key}}:{{@this}}
+		</div>
+	{{/each}}
+</script>
+
+
 </body>
 </html>
 
