@@ -35,6 +35,6 @@ dataView.init({
     var template = Handlebars.compile($('#template').html());
     dataView.render(template, model);
 
-})
+});
 
 
