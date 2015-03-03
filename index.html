@@ -15,22 +15,20 @@
 </div>
 <script id="template" type="text/x-handlebars-template">
 
-            <ul>
-                {{#each this}}
-                    <p><b>{{@key}}</b></p>
-                        {{#each this}}
-                             <li>{{@key}} {{@this}}</li>
-                        {{/each}}
-                {{/each}}
-            </ul>
+	<form id="sandwichForm">
+    {{#each this}}
+      <h3>{{@key}}</h3>
+      {{#each this}}
+				<p>                
+					<input type="checkbox" name="{{@../key}}" value="{{@key}}">
+					<label for="{{@key}}">{{@key}}:{{@this}}грн.</label>
+				</p>
+      {{/each}}
+    {{/each}}
+	</form>
 
 </script>
-
-
-	<script src="mustache.js"></script>
-	<script src="data.js"></script>
-	<script src="models.js"></script>
-	<script src="view.js"></script>
+	
 </body>
 </html>
 
