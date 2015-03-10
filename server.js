@@ -16,7 +16,7 @@ var server = http.createServer(function (req, res) {
 
 
 	if(req.method == 'POST'){
-
+		Handlers.post(req, res);
 	} else {
 		fs.readFile('.'+req.url, function(err, data){
 			var fn = req.url.replace('/','');

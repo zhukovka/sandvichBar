@@ -34,10 +34,7 @@ var Handlers = {
 				if(!obj){
 					out = 'bad form data';
 				} else{
-					// var friend = '\n';
-					// for(var key in obj){
-					// 	friend += obj[key]+' ';
-					// }
+					
 					out = JSON.stringify(obj);
 				}
 			}
