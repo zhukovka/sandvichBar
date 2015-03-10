@@ -24,13 +24,25 @@ $(function() {
     }
 
     var dataView = Object.create(ViewProto);
-
-    // var model = data;
-    var req = new XMLHttpRequest();
-    req.onload = function(e) {
-        console.log(req.response);
-        var model = JSON.parse(req.response); 
+    makeRequest("GET", '/scripts/data.json', null, renderView);
+    
+    function makeRequest (meth, url, data, cb) {
+        // body...
+        var req = new XMLHttpRequest();
+        req.onload = function(e) {
+            console.log(req.response);
+            cb(req.response);
+        }
         
+        req.open(meth, url);
+        req.send(data);
+    }
+    // var model = data;
+    
+    function renderViews(data){
+
+        var model = JSON.parse(data); 
+
         dataView.init({
             el:'order',
             model: model,
@@ -73,11 +85,6 @@ $(function() {
             form.removeEventListener('submit', addDelete);
         }
     }
-    
-    req.open("POST", '/data.html');
-    req.send('kuku=ololo');
-    
-
 
 });
 
