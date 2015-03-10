@@ -48,7 +48,10 @@ $(function() {
         var selected = this.querySelectorAll('input[type="checkbox"]:checked');
         var sandwich = {};
         Array.prototype.forEach.call(selected, function (input) {
-            sandwich[input.name] = input.value;
+            if(sandwich.hasOwnProperty(input.name))
+                sandwich[input.name].push(input.value);
+            else
+                sandwich[input.name] = [input.value];
         });
         var orderedSandwich = new Sandwich(sandwich);
         allOrderedSandwiches.push(orderedSandwich);
@@ -61,9 +64,12 @@ $(function() {
         });
 
         sandichView.render().addEventListener('click', function () {
-            this.classList.add('selected');
+            if(this.className == 'selected')
+                this.classList.remove('selected');
+            else
+                this.classList.add('selected');
         });
-        $('.myCheckbox').prop('checked', false);
+       $('.myCheckbox').prop('checked', false);
     });
 
 
