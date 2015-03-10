@@ -26,7 +26,6 @@ $(function() {
 
 
 
-
     var dataView = Object.create(ViewProto);
 
     var model = data;
@@ -39,8 +38,10 @@ $(function() {
 
     dataView.render();
 
+
+
     var form = document.getElementById('sandwichForm');
-    var sandwichDivs;
+    var allOrderedSandwiches = [];
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -50,33 +51,53 @@ $(function() {
             sandwich[input.name] = input.value;
         });
         var orderedSandwich = new Sandwich(sandwich);
+        allOrderedSandwiches.push(orderedSandwich);
         var sandichView = Object.create(ViewProto);
+
         sandichView.init({
             el: 'sandwich',
             model: orderedSandwich,
             template: '#sandwichTemplate'
         });
-        sandichView.render().addEventListener('click', function (e) {
+
+        sandichView.render().addEventListener('click', function () {
             this.classList.add('selected');
         });
+        $('.myCheckbox').prop('checked', false);
     });
 
-    
+
     form.addEventListener('submit', addDelete);
 
     function addDelete(e) {
         e.preventDefault();
         var deleteBtn = document.createElement('button');
         deleteBtn.innerHTML = 'Delete selected';
+        deleteBtn.addEventListener('click', function(){
+            var myNodeList = document.querySelectorAll(".selected");
+            for (var i = 0; i < myNodeList.length; ++i) {
+                var item = myNodeList[i];
+                item.parentNode.removeChild(item);
+            }
+        })
         document.getElementById('sandwichBar').appendChild(deleteBtn);
         form.removeEventListener('submit', addDelete);
     }
 
-    // Array.prototype.forEach.call(sandwichDivs, function (el) {
-    //     el.addEventListener('click', function (e) {
-    //         this.classList.add('selected');
-    //     });
-    // })
+
+    $('.Send_sandwich_form').on('click', function(e){
+        e.preventDefault();
+        var ajax = new XMLHttpRequest();
+        var data = {"address" : "Kiev,Krasnozovadaska street 2/13", "time" : new Date(), "data" : allOrderedSandwiches};
+        ajax.open('POST', 'http://127.0.0.1:3000/test', true);
+        ajax.setRequestHeader('Content-type', 'application/json');
+        ajax.send(JSON.stringify(data));
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState === 4) {
+                $("body").append(ajax.response);
+            }
+        }
+    });
 
 });
 
