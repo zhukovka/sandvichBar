@@ -1,8 +1,13 @@
 var http = require('http');
 var fs = require('fs');
+var path = require('path');
 
 var host = '127.0.0.1';
 var port = Number(process.env.PORT || 5000);
+var Handlers = require('./handlers');
+
+// console.log(JSON.parse(friends));
+// fs.writeFileSync('./friends.js', 'var friends = '+JSON.stringify(Data.friends));
 
 var server = http.createServer(function (req, res) {
 	// body...
